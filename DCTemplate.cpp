@@ -60,8 +60,7 @@ Tout dc_par(Tin input,
         while(i>=0){
             Tin my_task = i.fetch_sub(1);
             my_task--;
-            std::cout << std::endl << my_task << std::endl;
-            if (my_task){
+            if (my_task>=0){
                 outputs[my_task] = dc_seq(tasks[my_task],basecase,solve,divide,conquer);
             }
         }

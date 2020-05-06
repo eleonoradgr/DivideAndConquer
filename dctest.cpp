@@ -1,6 +1,7 @@
 #include <vector>
 #include <iostream>
 #include "DCTemplate.cpp"
+#include "utils/utimer.hpp"
 /*
  * Operand and Result are just integers
  */
@@ -41,14 +42,28 @@ bool cond(int n)
     return (n<=2);
 }
 
-int main(){
+int main(int argc, char *argv[]){
+    if (argc < 3) {
+        std::cout << "usage: " << argv[0] << std::endl;
+        std::cout << "fib : Number of Fibonacci series to calculate (mandatory)" << std::endl;
+        std::cout << "nw : Parallelism degree (mandatory)" << std::endl;
+        return -1;
+    }
+    int fib = atoi(argv[1]);
+    int nw = atoi(argv[2]);
+    int fibonacci = 0;
 
-    int fibonacci = dc_seq<int,int>(10, &cond, &solve, &divide, &combine);
+    {
+        utimer omp(" Sequential execution for "+ std::to_string(fib) + "th number \n");
+        fibonacci = dc_seq<int,int>(fib, &cond, &solve, &divide, &combine);
+    }
+    std::cout << "Fibonacci value: " << fibonacci << std::endl;
 
-    std::cout << fibonacci << "prima";
+    {
+        utimer omp(" Parallel execution for "+ std::to_string(fib) + "th number with "+ std::to_string(nw) + " trheads \n");
+        fibonacci = dc_par(fib, &cond, &solve, &divide, &combine,4);
+    }
+    std::cout << "Fibonacci value: " << fibonacci << std::endl;
 
-    fibonacci = dc_par(10, &cond, &solve, &divide, &combine,4);
-
-    std::cout << fibonacci << "dopo";
 
 }
