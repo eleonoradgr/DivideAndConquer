@@ -39,26 +39,28 @@ Tout dc_par(Tin input,
             int nw) {
 
     std::vector<Tin> tasks;
-    tasks.reserve(nw*2*sizeof(Tin));
+    tasks.reserve(nw*2);
     tasks.push_back(input);
-    std::atomic<int> i(0);
+    std::atomic<int> remaining(0);
 
-    //vedi se applicare la tranform
+
     while (tasks.size() < nw){
         std::vector<Tin> tmp;
-        tmp.reserve(nw*2*sizeof(Tin));
+        tmp.reserve(nw*2);
         for (int i = 0; i < tasks.size(); ++i){
             std::vector<Tin> aus = divide(tasks[i]);
            tmp.insert(tmp.end(), aus.begin(), aus.end());
         }
         tmp.swap(tasks);
     }
-    i = tasks.size();
+
+    remaining = tasks.size();
     std::vector<Tout> outputs(tasks.size());
     std::vector<std::thread*>  tid;
+    tid.reserve(nw);
     auto body = [&](){
-        while(i>=0){
-            Tin my_task = i.fetch_sub(1);
+        while(remaining>=0){
+            Tin my_task = remaining.fetch_sub(1);
             my_task--;
             if (my_task>=0){
                 outputs[my_task] = dc_seq(tasks[my_task],basecase,solve,divide,conquer);
