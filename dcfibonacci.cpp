@@ -57,13 +57,13 @@ int main(int argc, char *argv[]){
     int fibonacci = 0;
 
     {
-        utimer omp(" Sequential execution for "+ std::to_string(fib) + "th number \n");
+        utimer time(" Sequential execution for "+ std::to_string(fib) + "th number \n");
         fibonacci = dc_seq<int,int>(fib, &cond, &solve, &divide, &combine);
     }
     std::cout << "Fibonacci value: " << fibonacci << std::endl;
 
     {
-        utimer omp(" Parallel execution for "+ std::to_string(fib) + "th number with "+ std::to_string(nw) + " trheads \n");
+        utimer time(" Parallel execution for "+ std::to_string(fib) + "th number with "+ std::to_string(nw) + " trheads \n");
         fibonacci = dc_par(fib, &cond, &solve, &divide, &combine,nw);
     }
     std::cout << "Fibonacci value: " << fibonacci << std::endl;

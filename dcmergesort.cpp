@@ -153,7 +153,7 @@ int main(int argc, char *argv[]) {
     Result res;
 
     {
-        utimer omp(" Sequential execution for ordering an array of " + std::to_string(n) + " elements \n");
+        utimer time(" Sequential execution for ordering an array of " + std::to_string(n) + " elements \n");
         res = dc_seq<Operand, Result>(oper, &cond, &seq, &divide, &mergeMS);
     }
     //assert(isArraySorted(res.array, n));
@@ -165,7 +165,7 @@ int main(int argc, char *argv[]) {
     oper.right = n - 1;
 
     {
-        utimer omp(" Parallel execution for ordering" + std::to_string(n) + " elements with " + std::to_string(nw) +
+        utimer time(" Parallel execution for ordering" + std::to_string(n) + " elements with " + std::to_string(nw) +
                    " trheads \n");
         res = dc_par(oper, &cond, &seq, &divide, &mergeMS, nw);
     }
