@@ -153,10 +153,10 @@ int main(int argc, char *argv[]) {
     Result res;
 
     {
-        utimer omp(" Sequential execution for " + std::to_string(n) + "th number \n");
+        utimer omp(" Sequential execution for ordering an array of " + std::to_string(n) + " elements \n");
         res = dc_seq<Operand, Result>(oper, &cond, &seq, &divide, &mergeMS);
     }
-    assert(isArraySorted(res.array, n));
+    //assert(isArraySorted(res.array, n));
     std::cout << " Sorted: " << isArraySorted(res.array, n) << std::endl;
     free(array);
     array = generateRandomArray(n);
@@ -165,12 +165,12 @@ int main(int argc, char *argv[]) {
     oper.right = n - 1;
 
     {
-        utimer omp(" Parallel execution for " + std::to_string(n) + "th number with " + std::to_string(nw) +
+        utimer omp(" Parallel execution for ordering" + std::to_string(n) + " elements with " + std::to_string(nw) +
                    " trheads \n");
         res = dc_par(oper, &cond, &seq, &divide, &mergeMS, nw);
     }
+    //assert(isArraySorted(res.array, n));
     std::cout << " Sorted: " << isArraySorted(res.array, n) << std::endl;
-    assert(isArraySorted(res.array, n));
 
 }
 

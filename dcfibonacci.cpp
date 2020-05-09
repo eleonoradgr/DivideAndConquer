@@ -1,10 +1,13 @@
+/**
+  Fibonacci: find N-th number of Fibonacci serie in parallel using the DAC pattern
+
+  Part of the code was written by Massimo Torquati
+ */
 #include <vector>
 #include <iostream>
 #include "DCTemplate.cpp"
 #include "utils/utimer.hpp"
-/*
- * Operand and Result are just integers
- */
+
 /*
  * Divide Function: recursively compute n-1 and n-2
  */
@@ -23,12 +26,12 @@ int solve( int n)
 }
 
 /*
- * Combine function
+ * Combine function, all partial results are combined
  */
-int combine(std::vector<int> couples)
+int combine(std::vector<int> partial_res)
 {
     int next = 0;
-    for (auto& it : couples){
+    for (auto& it : partial_res){
         next += it;
     }
     return next;
