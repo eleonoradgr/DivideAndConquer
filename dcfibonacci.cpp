@@ -61,7 +61,7 @@ int main(int argc, char *argv[]){
 
     {
         utimer omp(" Parallel execution for "+ std::to_string(fib) + "th number with "+ std::to_string(nw) + " trheads \n");
-        fibonacci = dc_par(fib, &cond, &solve, &divide, &combine,4);
+        fibonacci = dc_par(fib, &cond, &solve, &divide, &combine,nw);
     }
     std::cout << "Fibonacci value: " << fibonacci << std::endl;
 
