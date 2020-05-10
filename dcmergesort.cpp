@@ -11,7 +11,6 @@
 #include <climits>
 #include "utils/utimer.hpp"
 #include "DCTemplate.cpp"
-#include "assert.h"
 
 #define CUTOFF 5000
 
@@ -156,7 +155,6 @@ int main(int argc, char *argv[]) {
         utimer time(" Sequential execution for ordering an array of " + std::to_string(n) + " elements \n");
         res = dc_seq<Operand, Result>(oper, &cond, &seq, &divide, &mergeMS);
     }
-    //assert(isArraySorted(res.array, n));
     std::cout << " Sorted: " << isArraySorted(res.array, n) << std::endl;
     free(array);
     array = generateRandomArray(n);
@@ -169,7 +167,6 @@ int main(int argc, char *argv[]) {
                    " trheads \n");
         res = dc_par(oper, &cond, &seq, &divide, &mergeMS, nw);
     }
-    //assert(isArraySorted(res.array, n));
     std::cout << " Sorted: " << isArraySorted(res.array, n) << std::endl;
 
 }
