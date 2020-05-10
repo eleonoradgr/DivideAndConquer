@@ -1,4 +1,4 @@
-## Divide and Conquer function template 
+# Divide and Conquer function template 
 
 The <b>sequential</b> function template has been left identical to that given by Professor Danelutto. <br>
 For the <b>parallel</b> version, I’ve used the idea which is similar to that one behind the divide and conquer pattern in Fast Flow. <br>
