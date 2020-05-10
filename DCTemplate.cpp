@@ -45,7 +45,7 @@ Tout dc_par(Tin input,
     while (tasks.size() < nw) {
         std::vector<Tin> tmp;
         tmp.reserve(nw * 2);
-        // every iteration all the tasks generate do far are divided, in this way jobs is more equally distributed among threads.
+        // every iteration all the tasks generate so far are divided, in this way jobs is more equally distributed among threads.
         for (int i = 0; i < tasks.size(); ++i) {
             std::vector<Tin> aus = divide(tasks[i]);
             tmp.insert(tmp.end(), aus.begin(), aus.end());

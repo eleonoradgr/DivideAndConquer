@@ -104,7 +104,7 @@ Result mergeMS(std::vector<Result> ress) {
 
     //merge in order
     for (int k = 0; k < size; k++) {
-        int min = INT_MIN;
+        int min = INT_MAX;
         int min_ind = -1;
         for (int i = 0; i < indexes.size(); ++i) {
             if (indexes[i] <= ress[i].right && ress[0].array[indexes[i]] < min) {
