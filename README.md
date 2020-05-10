@@ -1,5 +1,4 @@
-##Divide and Conquer function template
-
+## Divide and Conquer function template 
 
 The <b>sequential</b> function template has been left identical to that given by Professor Danelutto. <br>
 For the <b>parallel</b> version, I’ve used the idea which is similar to that one behind the divide and conquer pattern in Fast Flow. <br>
@@ -11,14 +10,14 @@ When all the workers finish their jobs, the thread that acts as emitter executes
 
 
 The following graph shows the Speedup achieved by the divide and conquer parallel function template in the computation  of the 40-th element of Fibonacci serie. The functions for computing Fibonacci are similar to those presented in lesson 26.
-![Fibonacci]()
+![Fibonacci](https://github.com/eleonoradgr/DivideAndConquer/blob/master/img/fibonacci_su.png)
 
 
 
 
 
 The following graph shows the Speedup achieved by the divide and conquer parallel function template in the computation  of Merge Sort over a vector of 100000000 elements. The functions for computing MergeSort are similar to those presented in lesson 26.
-![Mergesort]()
+![Mergesort](https://github.com/eleonoradgr/DivideAndConquer/blob/master/img/merge_su.png)
 
 
 
